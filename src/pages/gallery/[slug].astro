@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PieceMetadata from '../../components/PieceMetadata.astro';
+import ImageGallery from '../../components/ImageGallery.astro';
 
 export async function getStaticPaths() {
   const pieces = await getCollection('pieces');
@@ -138,32 +139,14 @@ const metaDescription = piece.data.description.length > 160
             </aside>
           )}
 
-          <!-- Detail Images -->
+          <!-- Image Gallery with Lightbox -->
           {piece.data.detailImages && piece.data.detailImages.length > 0 && (
-            <div class="detail-images mt-12">
-              <h2
-                class="font-serif text-2xl font-bold mb-6"
-                style="color: var(--text-title)"
-              >
-                Detail Shots
-              </h2>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {piece.data.detailImages.map((image, index) => (
-                  <div class="aspect-square overflow-hidden rounded-lg relative">
-                    <div
-                      class="skeleton-loader absolute inset-0 rounded-lg"
-                      aria-label="Loading detail image"
-                    ></div>
-                    <img
-                      src={image}
-                      alt={`${piece.data.title} - detail ${index + 1}`}
-                      class="detail-image w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                      loading="lazy"
-                      onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
-                    />
-                  </div>
-                ))}
-              </div>
+            <div class="mt-12">
+              <ImageGallery
+                images={piece.data.detailImages}
+                mainImage={piece.data.mainImage}
+                title={piece.data.title}
+              />
             </div>
           )}
         </section>
