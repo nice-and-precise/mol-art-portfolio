@@ -2,8 +2,8 @@
 
 <div align="center">
 
-![Project Status](https://img.shields.io/badge/Status-Foundation%20Complete-success?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-80%2F80%20Passing-brightgreen?style=for-the-badge)
+![Project Status](https://img.shields.io/badge/Status-Gallery%20Complete-success?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-168%2F168%20Passing-brightgreen?style=for-the-badge)
 ![Build](https://img.shields.io/badge/Build-Success-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
@@ -21,31 +21,36 @@ Create a **beautiful, maintainable** portfolio for a high school ceramic artist 
 
 | Goal | Status | Details |
 |------|--------|---------|
-| 🏺 Showcase 3 pottery pieces | ✅ Complete | Responsive gallery with example piece |
-| 🤖 AI-generated descriptions | ⏳ Planned | Claude API integration (Feature 002) |
-| 🔍 Visual search by color | ⏳ Planned | Color extraction (Feature 003) |
-| 🎨 Earthy aesthetic | ✅ Complete | Clay color palette applied |
+| 🏺 Showcase pottery collection | ✅ Complete | Responsive gallery with animations |
+| 🌓 Light/Dark Theme | ✅ Complete | Global theme toggle with persistence |
+| 🤖 AI-generated descriptions | ⏳ Planned | Claude API integration (Feature 003) |
+| 🔍 Visual search by color | ⏳ Planned | Color extraction (Feature 004) |
+| 🎨 Earthy aesthetic | ✅ Complete | Clay palette in both light/dark themes |
 | 👩‍🎨 Artist maintainable | ✅ Complete | Plain-language documentation |
 
 ---
 
 ## ✨ Features
 
-### 🎯 Current Features (v0.0.1)
+### 🎯 Current Features (v0.2.0)
 
-- ✅ **Responsive Gallery** - 1/2/3 column layout (mobile/tablet/desktop)
+- ✅ **Pottery Gallery** - Full responsive grid with 1/2/3 column layout
+- ✅ **Light/Dark Theme** - Global theme toggle with localStorage persistence
+- ✅ **Smooth Animations** - Sequential fade-in, skeleton loaders, hover effects
 - ✅ **Content Collections** - Type-safe Markdown with Zod validation
-- ✅ **Earthy Design** - Custom clay color palette (terracotta, cream, earth tones)
-- ✅ **Test Coverage** - 80/80 tests passing (100% coverage)
+- ✅ **Earthy Design** - Custom clay color palette in both themes
+- ✅ **Test Coverage** - 168/168 tests passing (100% coverage)
 - ✅ **Performance** - Optimized static build with Astro
+- ✅ **Accessibility** - WCAG AA compliant, full keyboard navigation
 - ✅ **Artist-Friendly** - Plain language docs, single-command deployment
 
 ### 🚀 Planned Features
 
-- 🔜 **AI Descriptions** - Enhanced pottery descriptions via Claude API
+- 🔜 **Detail Pages** - Individual pages for each pottery piece
+- 🔜 **AI Descriptions** - Enhanced descriptions via Claude API
 - 🔜 **Visual Search** - Find pieces by color, texture, technique
 - 🔜 **Social Sharing** - Open Graph tags, share cards
-- 🔜 **Image Optimization** - WebP generation, responsive images
+- 🔜 **Image Optimization** - WebP generation with Sharp
 
 ---
 

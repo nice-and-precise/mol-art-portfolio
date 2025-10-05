@@ -1,0 +1,73 @@
+PROJECT: Mol_Art Pottery Portfolio Gallery Component
+
+MISSION: Create a warm, earthy, handcrafted pottery gallery for a high school ceramic artist's portfolio website.
+
+DESIGN PRINCIPLES:
+- Warm earthy aesthetic inspired by clay and ceramic glazes
+- Generous whitespace - pottery needs room to breathe
+- Artisanal feel, not corporate - think artist studio, not tech startup
+- Accessibility-first - high schooler will maintain this independently
+- Mobile-first responsive design
+
+MANDATORY COLOR PALETTE (use exactly these hex values):
+- Page background: #faf8f5 (warm cream)
+- Card background: #ffffff (white)
+- Title text: #3d2f24 (dark earth brown)
+- Body text: #6b5544 (fired clay brown)
+- Primary accent: #9c8671 (terracotta)
+- Badge background: #d4c4b0 (warm tan)
+- Badge text: #3d2f24 (dark earth)
+- Secondary accents: #7fa5a3 (celadon blue), #8b9d83 (sage green)
+
+DO NOT USE: Cool grays, blues (except celadon accent), blacks (#000000), or stark whites for text. All colors must be warm earth tones.
+
+TYPOGRAPHY REQUIREMENTS:
+- All titles/headings: Georgia, serif (artisanal feel)
+- Body text: system-ui, -apple-system, sans-serif
+- Minimum font size anywhere: 16px (accessibility requirement)
+- Title size: 1.75rem minimum (28px)
+
+LAYOUT REQUIREMENTS:
+- Responsive grid: 1 column mobile (<640px), 2 columns tablet (640-1024px), 3 columns desktop (>1024px)
+- Grid gap: 32px minimum between cards
+- Card padding: 24px internal padding
+- Container max-width: 1200px, centered
+- Generous top/bottom page padding: 64px minimum
+
+COMPONENT REQUIREMENTS:
+- Each pottery card must include: square image (1:1 aspect ratio), title in Georgia serif, techniques as small rounded pill badges, description text (max 3 lines with ellipsis)
+- Cards must have rounded corners (12px), subtle shadows that grow on hover
+- Hover effect: shadow grows, card scales to 1.02, smooth 300ms transition
+- All cards are fully clickable/tappable
+- Images use object-fit: cover for consistent sizing
+
+TECHNICAL CONSTRAINTS:
+- Use React with TypeScript
+- Use Tailwind CSS (configure custom colors if needed)
+- Semantic HTML with proper accessibility (alt text, ARIA labels)
+- Touch-friendly tap targets on mobile
+- Smooth responsive behavior on window resize
+
+AESTHETIC GOALS:
+- Should feel like browsing pottery in an artist's studio
+- Warm, tactile, inviting - not cold or corporate
+- Professional quality but handcrafted charm
+- Color harmony across all browns/creams/earth tones
+- Soft shadows, organic feel, generous spacing
+
+OUTPUT EXPECTATIONS:
+- Production-ready code that can be copied directly
+- Clean, well-structured components
+- Proper TypeScript types
+- Tailwind classes for all styling
+- Responsive behavior built-in
+- No unnecessary dependencies
+
+AVOID:
+- Cookie-cutter corporate designs
+- Cool color temperatures (grays, blues except celadon)
+- Tight spacing or cramped layouts
+- Harsh geometric shadows
+- Sans-serif headings (must use Georgia serif)
+- Complex state management (keep it simple)
+- Animations beyond simple hover transitions

@@ -1,0 +1,20 @@
+Add these final polish improvements:
+
+1. IMAGE LOADING STATE:
+Add skeleton loaders for images - shimmer animation with warm tan (#d4c4b0 in light, #3d2f24 in dark) while images load.
+
+2. CARD CLICK FEEDBACK:
+Add active state when cards are clicked - scale to 0.98 briefly before navigation, gives tactile feedback.
+
+3. SUBTLE BORDER ON HOVER:
+Add 2px terracotta (#9c8671) border that fades in on card hover, complements the shadow lift.
+
+4. ACCESSIBILITY IMPROVEMENTS:
+- Add focus visible states (keyboard navigation) with terracotta outline
+- Ensure theme toggle has proper ARIA labels
+- Add "View details" screen reader text to cards
+
+5. SMOOTH PAGE TRANSITIONS:
+Add fade-in animation when page loads - all cards fade in sequentially with 100ms stagger for elegant reveal.
+
+Keep all existing spacing, colors, and behavior. These are subtle refinements for production quality.
