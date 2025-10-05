@@ -34,6 +34,37 @@ Create a **beautiful, maintainable** portfolio for a high school ceramic artist 
 
 ### 🎯 Current Features (v0.2.0)
 
+```mermaid
+graph LR
+    subgraph "Gallery Features"
+        A[🖼️ Responsive Grid] --> B[📱 Mobile: 1 col]
+        A --> C[💻 Tablet: 2 col]
+        A --> D[🖥️ Desktop: 3 col]
+    end
+
+    subgraph "Visual Polish"
+        E[✨ Animations] --> F[Sequential Fade-in]
+        E --> G[Skeleton Loaders]
+        E --> H[Hover Effects]
+        H --> I[Scale Transform]
+        H --> J[Shadow Growth]
+        H --> K[Terracotta Border]
+    end
+
+    subgraph "Theme System"
+        L[🌓 Toggle] --> M[☀️ Light Mode]
+        L --> N[🌙 Dark Mode]
+        M --> O[💾 Persists]
+        N --> O
+    end
+
+    style A fill:#9c8671
+    style E fill:#6b5544
+    style L fill:#3d2f24,color:#fff
+```
+
+**Feature List:**
+
 - ✅ **Pottery Gallery** - Full responsive grid with 1/2/3 column layout
 - ✅ **Light/Dark Theme** - Global theme toggle with localStorage persistence
 - ✅ **Smooth Animations** - Sequential fade-in, skeleton loaders, hover effects
@@ -151,13 +182,13 @@ mindmap
 
 | Article | Principle | Status | Details |
 |---------|-----------|--------|---------|
-| **I** | Simplicity First | ✅ Pass | 3 components: Astro, React, Tailwind |
+| **I** | Simplicity First | ✅ Pass | 3 components: Astro, React, Tailwind + vanilla JS theme |
 | **II** | Content as Data | ✅ Pass | Markdown with Zod schema |
-| **III** | Test-First Development | ✅ Pass | 80/80 tests, red→green cycle |
-| **IV** | Performance Budget | ✅ Pass | Build optimized, ready for Lighthouse |
+| **III** | Test-First Development | ✅ Pass | 168/168 tests, red→green cycle |
+| **IV** | Performance Budget | ✅ Pass | Build optimized (4.14s), ready for Lighthouse |
 | **V** | AI Enhancement | ⏳ Future | Fallbacks designed, API integration pending |
-| **VI** | Maintainability | ✅ Pass | Artist documentation complete |
-| **VII** | Earthy Aesthetic | ✅ Pass | Clay palette applied |
+| **VI** | Maintainability | ✅ Pass | Artist documentation complete, theme guide added |
+| **VII** | Earthy Aesthetic | ✅ Pass | Clay palette in light & dark themes |
 | **VIII** | Observable & Testable | ✅ Pass | All features CLI-testable |
 | **IX** | Amendment Process | ✅ Pass | Process documented, no amendments needed |
 
@@ -167,26 +198,85 @@ mindmap
 
 ### Color Palette (Article VII)
 
+#### Light Theme (Default)
+
 <div align="center">
 
 | Swatch | Name | Hex | Usage |
 |--------|------|-----|-------|
-| ![#faf8f5](https://via.placeholder.com/20/faf8f5/faf8f5) | Cream | `#faf8f5` | Backgrounds |
-| ![#f5f1ea](https://via.placeholder.com/20/f5f1ea/f5f1ea) | Light Clay | `#f5f1ea` | Subtle backgrounds |
+| ![#faf8f5](https://via.placeholder.com/20/faf8f5/faf8f5) | Cream | `#faf8f5` | Page background |
+| ![#ffffff](https://via.placeholder.com/20/ffffff/ffffff) | White | `#ffffff` | Card background |
 | ![#d4c4b0](https://via.placeholder.com/20/d4c4b0/d4c4b0) | Warm Tan | `#d4c4b0` | Badges, accents |
 | ![#9c8671](https://via.placeholder.com/20/9c8671/9c8671) | **Terracotta** | `#9c8671` | **Primary brand color** |
 | ![#6b5544](https://via.placeholder.com/20/6b5544/6b5544) | Fired Clay | `#6b5544` | Hover states |
 | ![#3d2f24](https://via.placeholder.com/20/3d2f24/3d2f24) | Dark Earth | `#3d2f24` | Text, headers |
 
-**Glaze Accents**
+</div>
+
+#### Dark Theme
+
+<div align="center">
 
 | Swatch | Name | Hex | Usage |
 |--------|------|-----|-------|
-| ![#7fa5a3](https://via.placeholder.com/20/7fa5a3/7fa5a3) | Celadon | `#7fa5a3` | Links, highlights |
-| ![#8b9d83](https://via.placeholder.com/20/8b9d83/8b9d83) | Sage | `#8b9d83` | Subtle accents |
-| ![#f0ebe3](https://via.placeholder.com/20/f0ebe3/f0ebe3) | Matte White | `#f0ebe3` | Cards, surfaces |
+| ![#1a1410](https://via.placeholder.com/20/1a1410/1a1410) | Deep Earth | `#1a1410` | Page background |
+| ![#2d2419](https://via.placeholder.com/20/2d2419/2d2419) | Dark Clay | `#2d2419` | Card background |
+| ![#7d6c5a](https://via.placeholder.com/20/7d6c5a/7d6c5a) | Warm Stone | `#7d6c5a` | Badges, accents |
+| ![#a89079](https://via.placeholder.com/20/a89079/a89079) | **Light Terracotta** | `#a89079` | **Primary brand color** |
+| ![#c9b49a](https://via.placeholder.com/20/c9b49a/c9b49a) | Warm Glow | `#c9b49a` | Hover states |
+| ![#f5f1ea](https://via.placeholder.com/20/f5f1ea/f5f1ea) | Light Cream | `#f5f1ea` | Text, headers |
 
 </div>
+
+**Theme Implementation:**
+- 🎨 CSS custom properties with `data-theme` attribute
+- 💾 localStorage persistence
+- ⚡ Zero FOUC (inline script prevents flash)
+- 🔄 300ms smooth transitions
+- 🌓 Toggle button (top-right, Sun/Moon icons)
+
+### Theme System Architecture
+
+```mermaid
+graph TB
+    subgraph "User Interaction"
+        USER[👤 User] -->|Clicks toggle| BUTTON[🌓 ThemeToggle Button]
+    end
+
+    subgraph "Theme Logic (theme.ts)"
+        BUTTON -->|toggleTheme| TOGGLE[toggleTheme Function]
+        TOGGLE -->|getTheme| GET[getTheme Function]
+        GET -->|Check| LS[📦 localStorage<br/>pottery-theme]
+        LS -->|Return| THEME[Theme: light/dark]
+        THEME -->|setTheme| SET[setTheme Function]
+        SET -->|Update| LS
+        SET -->|Apply| DOM[🌐 data-theme attribute<br/>on documentElement]
+    end
+
+    subgraph "CSS Application"
+        DOM -->|Selects| VARS[CSS Custom Properties]
+        VARS -->|Light Mode| LIGHT["--bg-page: #faf8f5<br/>--text-title: #3d2f24"]
+        VARS -->|Dark Mode| DARK["--bg-page: #1a1410<br/>--text-title: #f5f1ea"]
+    end
+
+    subgraph "Visual Update"
+        LIGHT -->|Apply to| PAGE[🎨 Page Renders]
+        DARK -->|Apply to| PAGE
+        PAGE -->|300ms transition| SMOOTH[✨ Smooth Color Shift]
+    end
+
+    subgraph "FOUC Prevention"
+        INIT[⚡ Page Load] -->|Inline Script| EARLY[Read localStorage<br/>BEFORE render]
+        EARLY -->|Set immediately| DOM
+    end
+
+    style USER fill:#f5f1ea
+    style BUTTON fill:#d4c4b0
+    style TOGGLE fill:#9c8671
+    style LS fill:#6b5544
+    style DOM fill:#3d2f24,color:#fff
+    style PAGE fill:#9c8671
+```
 
 ### Typography
 
@@ -247,23 +337,27 @@ graph LR
 ### Build Status
 
 ```
-✅ Foundation Complete
+✅ Foundation Complete (v0.1.0)
 ├── ✅ Configuration (Astro, React, Tailwind)
 ├── ✅ Content Collections (Zod schema)
 ├── ✅ Base Layouts (Semantic HTML)
-├── ✅ Index Page (Gallery grid)
+├── ✅ Homepage (Gallery grid)
 ├── ✅ Test Suite (80/80 passing)
 └── ✅ Documentation (Artist guides)
 
-🎨 UI Design (In Progress)
-├── ⏳ Spark Prototyping
-├── ⏳ Component Specifications
-└── ⏳ Production Implementation
+✅ Gallery & Theme System (v0.2.0) - COMPLETE
+├── ✅ Responsive Gallery Page (/gallery)
+├── ✅ Global Light/Dark Theme Toggle
+├── ✅ Smooth Animations & Skeleton Loaders
+├── ✅ Theme Persistence (localStorage)
+├── ✅ Test Suite (168/168 passing)
+└── ✅ Theme Documentation
 
 🚀 Future Features
-├── 🔜 AI Descriptions (Feature 002)
-├── 🔜 Visual Search (Feature 003)
-└── 🔜 Social Sharing (Feature 004)
+├── 🔜 Detail Pages (Feature 003)
+├── 🔜 AI Descriptions (Feature 004)
+├── 🔜 Visual Search (Feature 005)
+└── 🔜 Social Sharing (Feature 006)
 ```
 
 ### Test Coverage
@@ -272,10 +366,10 @@ graph LR
 
 | Test Type | Count | Status |
 |-----------|-------|--------|
-| **Unit Tests** | 53 | ✅ Passing |
-| **Integration Tests** | 27 | ✅ Passing |
+| **Unit Tests** | 61 | ✅ Passing |
+| **Integration Tests** | 107 | ✅ Passing |
 | **E2E Tests** | 0 | ⏳ Planned |
-| **Total** | **80** | **✅ 100%** |
+| **Total** | **168** | **✅ 100%** |
 
 ### Performance Metrics
 
@@ -295,21 +389,27 @@ graph LR
 
 - 🎨 [**Adding New Pottery Pieces**](docs/adding-new-piece.md) - Step-by-step guide (no coding!)
 - 📖 [**Setup Guide**](docs/setup-guide.md) - Initial setup instructions
-- 🎯 [**Spark Quick Start**](docs/SPARK_QUICK_START.md) - Design UI with GitHub Spark
+- 🌓 [**Theme System Guide**](docs/theme-system.md) - Understanding light/dark themes
 
 ### For Developers
 
 - 🏗️ [**SDD Methodology**](docs/sdd-methodology.md) - Specification-Driven Development
 - 🏛️ [**Constitution**](constitution.md) - Architectural principles & gates
 - 🤖 [**Agent Instructions**](.claude/instructions.md) - For AI development
-- 🎨 [**Spark Integration**](docs/spark-integration-guide.md) - UI design workflow
+- 🎨 [**Theme System**](docs/theme-system.md) - Technical implementation details
 
 ### Specifications
 
-- 📋 [**Feature 001: Initial Setup**](specs/001-initial-project-setup/spec.md) - Foundation spec
+#### Feature 001: Foundation (v0.1.0)
+- 📋 [**Specification**](specs/001-initial-project-setup/spec.md) - Foundation requirements
 - 📝 [**Implementation Plan**](specs/001-initial-project-setup/plan.md) - Technical approach
 - ✅ [**Tasks**](specs/001-initial-project-setup/tasks.md) - Executable task list
 - 📊 [**Constitutional Gates**](specs/001-initial-project-setup/constitutional-gates-checklist.md) - Compliance
+
+#### Feature 002: Gallery & Theme (v0.2.0)
+- 📋 [**Specification**](specs/002-gallery-with-theme/spec.md) - Gallery & theme requirements
+- 📝 [**Implementation Plan**](specs/002-gallery-with-theme/plan.md) - Architecture decisions
+- ✅ [**Tasks**](specs/002-gallery-with-theme/tasks.md) - 68 tasks completed
 
 ---
 
@@ -421,6 +521,10 @@ mol-art-portfolio/
 │   │   ├── tasks.md        # Executable tasks
 │   │   ├── data-model.md   # Content schema
 │   │   └── contracts/      # API/CLI contracts
+│   ├── 002-gallery-with-theme/  # ✨ NEW in v0.2.0
+│   │   ├── spec.md         # Gallery & theme specification
+│   │   ├── plan.md         # Architecture decisions
+│   │   └── tasks.md        # 68 tasks completed
 │   └── constitutional-amendments/
 ├── 📁 src/                  # Source code
 │   ├── content/            # Markdown pottery data
@@ -428,25 +532,46 @@ mol-art-portfolio/
 │   │   ├── pieces/         # Pottery markdown files
 │   │   └── images/         # Pottery images
 │   ├── layouts/            # Astro layouts
+│   │   └── BaseLayout.astro  # ✨ Theme integration
 │   ├── pages/              # Astro pages
-│   └── components/         # React islands
+│   │   ├── index.astro     # Homepage
+│   │   └── gallery.astro   # ✨ NEW: Gallery page
+│   ├── components/         # React islands & Astro components
+│   │   └── ThemeToggle.astro  # ✨ NEW: Theme toggle
+│   └── scripts/            # ✨ NEW: Client scripts
+│       └── theme.ts        # ✨ NEW: Theme management
 ├── 📁 tests/               # Test suite
-│   ├── unit/               # Unit tests (53)
-│   ├── integration/        # Integration tests (27)
+│   ├── unit/               # Unit tests (61)
+│   │   ├── config.test.ts
+│   │   ├── schema.test.ts
+│   │   └── theme.test.ts   # ✨ NEW: 8 theme tests
+│   ├── integration/        # Integration tests (107)
+│   │   ├── content-collection.test.ts
+│   │   ├── index-page.test.ts
+│   │   ├── gallery.test.ts  # ✨ NEW: 50 gallery tests
+│   │   └── theme-toggle.test.ts  # ✨ NEW: 30 toggle tests
 │   └── e2e/                # End-to-end tests (planned)
 ├── 📁 docs/                # Documentation
-│   ├── adding-new-piece.md    # Artist guide
+│   ├── adding-new-piece.md    # Artist guide (updated)
 │   ├── setup-guide.md         # Developer setup
 │   ├── sdd-methodology.md     # SDD workflow
-│   ├── spark-integration-guide.md
-│   └── SPARK_QUICK_START.md
+│   ├── theme-system.md        # ✨ NEW: Theme guide
+│   ├── BOLT_STRATEGY.md       # Bolt.new workflow
+│   └── bolt-export-notes.md   # Export instructions
 ├── 📄 constitution.md      # Architectural principles
-├── 📄 README.md           # This file
+├── 📄 README.md           # This file (updated)
 ├── ⚙️ astro.config.mjs    # Astro configuration
 ├── ⚙️ tailwind.config.cjs # Tailwind + clay palette
 ├── ⚙️ vitest.config.ts    # Test configuration
 └── 📦 package.json        # Dependencies & scripts
 ```
+
+**✨ New in v0.2.0** (highlighted above):
+- Gallery page with responsive grid
+- Global theme system (light/dark)
+- Theme toggle component
+- 88 new tests (theme + gallery)
+- Comprehensive theme documentation
 
 ---
 
