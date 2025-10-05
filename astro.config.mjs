@@ -4,6 +4,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [react(), tailwind()],
-  site: 'https://username.github.io',
+  site: 'https://nice-and-precise.github.io',
   base: '/mol-art-portfolio',
 });
