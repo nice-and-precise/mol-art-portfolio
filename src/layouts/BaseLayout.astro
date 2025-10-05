@@ -73,9 +73,25 @@ const { title, description = 'Professional pottery portfolio showcasing handcraf
     </style>
 
     <!-- Theme script -->
-    <script>
-      import { setTheme, getTheme, toggleTheme } from '../scripts/theme.ts';
-      // Functions are already exported to window in theme.ts
+    <script is:inline>
+      // Theme functions available globally
+      window.getTheme = function() {
+        if (typeof localStorage === 'undefined') return 'light';
+        return localStorage.getItem('pottery-theme') || 'light';
+      };
+
+      window.setTheme = function(theme) {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('pottery-theme', theme);
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      };
+
+      window.toggleTheme = function() {
+        const current = window.getTheme();
+        const next = current === 'light' ? 'dark' : 'light';
+        window.setTheme(next);
+      };
     </script>
   </head>
   <body class="font-sans min-h-screen">
