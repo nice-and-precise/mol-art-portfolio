@@ -206,21 +206,23 @@ const allColors = [...new Set(pieces.flatMap(p => p.data.colors))].sort();
 </style>
 
 <script>
-  // Add keyboard navigation
+  // Add keyboard navigation and click handlers
   document.querySelectorAll('.pottery-card').forEach((card) => {
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const pieceId = card.getAttribute('data-piece-id');
-        console.log('Navigating to pottery piece:', pieceId);
-        // TODO: Navigate to detail page when implemented
+        if (pieceId) {
+          window.location.href = `/gallery/${pieceId}`;
+        }
       }
     });
 
     card.addEventListener('click', () => {
       const pieceId = card.getAttribute('data-piece-id');
-      console.log('Clicked pottery piece:', pieceId);
-      // TODO: Navigate to detail page when implemented
+      if (pieceId) {
+        window.location.href = `/gallery/${pieceId}`;
+      }
     });
   });
 </script>

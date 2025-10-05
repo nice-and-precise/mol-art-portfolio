@@ -1,0 +1,170 @@
+---
+interface Props {
+  date: string;
+  techniques: string[];
+  colors: string[];
+  textures?: string[];
+}
+
+const { date, techniques, colors, textures } = Astro.props;
+---
+
+<div
+  class="metadata-card sticky top-8 p-8 rounded-xl shadow-lg"
+  style="background-color: var(--bg-card)"
+>
+  <!-- Date -->
+  <div class="metadata-section mb-8">
+    <h3
+      class="font-serif text-sm uppercase tracking-wide font-semibold mb-3"
+      style="color: var(--text-body); opacity: 0.7"
+    >
+      Created
+    </h3>
+    <time
+      class="text-lg font-medium"
+      style="color: var(--text-title)"
+      datetime={new Date(date).toISOString()}
+    >
+      {date}
+    </time>
+  </div>
+
+  <!-- Techniques -->
+  <div class="metadata-section mb-8">
+    <h3
+      class="font-serif text-sm uppercase tracking-wide font-semibold mb-3"
+      style="color: var(--text-body); opacity: 0.7"
+    >
+      Techniques
+    </h3>
+    <ul class="space-y-2" role="list">
+      {techniques.map((technique) => (
+        <li
+          class="flex items-center gap-2 text-base"
+          style="color: var(--text-title)"
+          role="listitem"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            style="color: var(--color-accent)"
+          >
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          {technique}
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Colors -->
+  <div class="metadata-section mb-8">
+    <h3
+      class="font-serif text-sm uppercase tracking-wide font-semibold mb-3"
+      style="color: var(--text-body); opacity: 0.7"
+    >
+      Colors
+    </h3>
+    <div class="flex flex-wrap gap-2">
+      {colors.map((color) => (
+        <span
+          class="color-badge px-3 py-1.5 rounded-full text-sm font-medium"
+          style={{
+            backgroundColor: 'var(--color-badge)',
+            color: 'var(--color-badge-text)',
+          }}
+        >
+          {color}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Textures (Optional) -->
+  {textures && textures.length > 0 && (
+    <div class="metadata-section">
+      <h3
+        class="font-serif text-sm uppercase tracking-wide font-semibold mb-3"
+        style="color: var(--text-body); opacity: 0.7"
+      >
+        Textures
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        {textures.map((texture) => (
+          <span
+            class="texture-badge px-3 py-1.5 rounded text-sm font-medium"
+            style={{
+              backgroundColor: 'var(--color-badge)',
+              color: 'var(--color-badge-text)',
+            }}
+          >
+            {texture}
+          </span>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  /* Sticky positioning for sidebar */
+  .metadata-card {
+    position: sticky;
+    top: 2rem;
+  }
+
+  /* Animation on load */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .metadata-card {
+    animation: slideInRight 0.6s ease-out 0.2s both;
+  }
+
+  /* Metadata section spacing */
+  .metadata-section:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Badge hover effects */
+  .color-badge,
+  .texture-badge {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .color-badge:hover,
+  .texture-badge:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  /* List styling */
+  .metadata-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .metadata-card {
+      position: static;
+    }
+  }
+</style>
