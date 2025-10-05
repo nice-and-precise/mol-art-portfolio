@@ -1,4 +1,14 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import {
+  parseURLParams,
+  filterPieces,
+  sortPieces,
+  buildURLString,
+  getUniqueValues,
+  type FilterState,
+  type SortOption,
+  type PieceData,
+} from '../../src/scripts/gallery-filters';
 
 /**
  * Unit Tests for Gallery Filtering & Sorting Logic
@@ -11,46 +21,6 @@ import { describe, it, expect, beforeEach } from 'vitest';
  *
  * These tests verify the filtering/sorting logic independent of DOM manipulation.
  */
-
-// Types that will be implemented in src/scripts/gallery-filters.ts
-interface FilterState {
-  techniques: string[];
-  colors: string[];
-  featured: boolean | null;
-  sort: SortOption;
-}
-
-type SortOption = 'date-desc' | 'date-asc' | 'title-asc' | 'title-desc' | 'featured';
-
-interface PieceData {
-  slug: string;
-  title: string;
-  date: Date;
-  techniques: string[];
-  colors: string[];
-  featured: boolean;
-}
-
-// Mock implementations - these will be replaced with actual imports
-const parseURLParams = (url: string): FilterState => {
-  throw new Error('Not implemented');
-};
-
-const filterPieces = (pieces: PieceData[], state: FilterState): PieceData[] => {
-  throw new Error('Not implemented');
-};
-
-const sortPieces = (pieces: PieceData[], sort: SortOption): PieceData[] => {
-  throw new Error('Not implemented');
-};
-
-const buildURLString = (state: FilterState): string => {
-  throw new Error('Not implemented');
-};
-
-const getUniqueValues = (pieces: PieceData[], field: 'techniques' | 'colors'): string[] => {
-  throw new Error('Not implemented');
-};
 
 // Mock data for testing
 const mockPieces: PieceData[] = [
@@ -321,7 +291,7 @@ describe('Gallery Filters - URL Building', () => {
       techniques: ['hand-building'],
       colors: ['terracotta'],
       featured: true,
-      sort: 'date-desc',
+      sort: 'title-asc', // Non-default sort
     };
 
     const url = buildURLString(state);
@@ -329,7 +299,7 @@ describe('Gallery Filters - URL Building', () => {
     expect(url).toContain('technique=hand-building');
     expect(url).toContain('color=terracotta');
     expect(url).toContain('featured=true');
-    expect(url).toContain('sort=date-desc');
+    expect(url).toContain('sort=title-asc');
   });
 
   it('should generate URL with multiple techniques', () => {
