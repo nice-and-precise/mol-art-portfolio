@@ -1,0 +1,55 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "C:\\Users\\Owner\\Desktop\\mol-art-portfolio"],
+      "description": "Full repository file access",
+      "required": true
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git", "C:\\Users\\Owner\\Desktop\\mol-art-portfolio"],
+      "description": "Git operations (branch, commit, push)",
+      "required": true
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "description": "Web search for research during planning",
+      "required": false
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "description": "Fetch web pages and APIs (Claude API access)",
+      "required": true
+    }
+  },
+  "environment": {
+    "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+    "BRAVE_API_KEY": "${BRAVE_API_KEY}",
+    "NODE_ENV": "development"
+  },
+  "permissions": {
+    "fileSystem": {
+      "read": ["**/*"],
+      "write": ["src/**/*", "specs/**/*", "tests/**/*", "docs/**/*"],
+      "delete": ["specs/**/temp-*"]
+    },
+    "git": {
+      "branch": true,
+      "commit": true,
+      "push": true,
+      "merge": false
+    },
+    "network": {
+      "allowedDomains": [
+        "api.anthropic.com",
+        "*.githubusercontent.com"
+      ]
+    }
+  }
+}
