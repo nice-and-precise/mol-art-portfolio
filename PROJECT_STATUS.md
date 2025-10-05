@@ -18,8 +18,8 @@
 |--------|--------|---------|--------|
 | **Simplicity** | ≤3 components | 3 (Astro, React, Tailwind) | ✅ Achieved |
 | **Maintainability** | High schooler can maintain | Plain language docs | ✅ Achieved |
-| **Test Coverage** | 100% features tested | 80 tests passing | ✅ Achieved |
-| **Performance** | Lighthouse ≥90 | Pending deployment | ⏳ Pending |
+| **Test Coverage** | 100% features tested | 168 tests passing | ✅ Achieved |
+| **Performance** | Lighthouse ≥90 | **100/100/96/100** ⚡ | ✅ **EXCEEDED** |
 | **Documentation** | Complete & visual | Enhanced with Mermaid | ✅ Achieved |
 
 ---
@@ -182,18 +182,15 @@ pie title Test Distribution (v0.2.0)
 
 ```mermaid
 graph LR
-    subgraph Passing["✅ Passing (7 articles)"]
+    subgraph Passing["✅ Passing (8 articles)"]
         A1[I: Simplicity<br/>3 components]
         A2[II: Content as Data<br/>Markdown]
         A3[III: Test-First<br/>RED→GREEN]
-        A4[VI: Maintainability<br/>Plain language]
-        A5[VII: Aesthetic<br/>Clay palette]
-        A6[VIII: Observable<br/>CLI testable]
-        A7[IX: Amendments<br/>Documented]
-    end
-
-    subgraph Pending["⏳ Pending (1 article)"]
-        B1[IV: Performance<br/>≥90 Lighthouse]
+        A4[IV: Performance<br/>100/100/96/100 ⚡]
+        A5[VI: Maintainability<br/>Plain language]
+        A6[VII: Aesthetic<br/>Clay palette]
+        A7[VIII: Observable<br/>CLI testable]
+        A8[IX: Amendments<br/>Documented]
     end
 
     subgraph Future["🔄 Future (1 article)"]
@@ -207,7 +204,7 @@ graph LR
     style A5 fill:#9c8671,color:#fff
     style A6 fill:#9c8671,color:#fff
     style A7 fill:#9c8671,color:#fff
-    style B1 fill:#f5f1ea
+    style A8 fill:#9c8671,color:#fff
     style C1 fill:#d4c4b0
 ```
 
@@ -216,7 +213,7 @@ graph LR
 | **I: Simplicity** | ≤3 components | ✅ Pass | Astro + React + Tailwind |
 | **II: Content as Data** | Markdown only | ✅ Pass | Content collections configured |
 | **III: Test-First** | RED→GREEN cycle | ✅ Pass | 18 failed → 80 passing |
-| **IV: Performance** | Lighthouse ≥90 | ⏳ Pending | Awaiting deployment |
+| **IV: Performance** | Lighthouse ≥90 | ✅ **Pass** | **100/100/96/100 (Perf/A11y/BP/SEO)** |
 | **V: AI Enhancement** | Build-time only | 🔄 Future | Spec ready, not implemented |
 | **VI: Maintainability** | High schooler | ✅ Pass | Plain language docs |
 | **VII: Earthy Aesthetic** | Clay palette | ✅ Pass | Tailwind config implemented |
@@ -279,13 +276,14 @@ graph TB
 ### Pre-Deployment Checklist
 
 - [x] Repository initialized
-- [x] All tests passing (80/80)
+- [x] All tests passing (168/168)
 - [x] Build succeeds locally
 - [x] Documentation complete
-- [ ] GitHub repo created
-- [ ] GitHub Pages configured
-- [ ] Performance budget verified
-- [ ] Production build tested
+- [x] GitHub repo created
+- [x] GitHub Pages configured
+- [x] **Performance budget verified (100/100/96/100)** ⚡
+- [x] Production build tested
+- [x] **LIVE on GitHub Pages** 🚀
 - [ ] Custom domain configured (optional)
 
 ### Deployment Commands
@@ -307,23 +305,24 @@ npm run deploy
 
 ### Lighthouse Scores (Target)
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| **Performance** | ≥90 | TBD | ⏳ Pending |
-| **Accessibility** | ≥90 | TBD | ⏳ Pending |
-| **Best Practices** | ≥90 | TBD | ⏳ Pending |
-| **SEO** | ≥90 | TBD | ⏳ Pending |
+| Metric | Target | Homepage | Gallery | Status |
+|--------|--------|----------|---------|--------|
+| **Performance** | ≥90 | **100** 🎯 | **100** 🎯 | ✅ **EXCELLENT** |
+| **Accessibility** | ≥90 | **100** 🎯 | **99** 🎯 | ✅ **EXCELLENT** |
+| **Best Practices** | ≥90 | **96** ✅ | **96** ✅ | ✅ **PASS** |
+| **SEO** | ≥90 | **100** 🎯 | **100** 🎯 | ✅ **EXCELLENT** |
 
-### Core Web Vitals (Target)
+### Core Web Vitals (Production)
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| **LCP** (Largest Contentful Paint) | <2.5s | TBD | ⏳ Pending |
-| **FCP** (First Contentful Paint) | <1.8s | TBD | ⏳ Pending |
-| **TBT** (Total Blocking Time) | <200ms | TBD | ⏳ Pending |
-| **CLS** (Cumulative Layout Shift) | <0.1 | TBD | ⏳ Pending |
+| Metric | Target | Homepage | Status |
+|--------|--------|----------|--------|
+| **LCP** (Largest Contentful Paint) | <2.5s | **0.9s** ✅ | ✅ **EXCELLENT** (64% under target) |
+| **FCP** (First Contentful Paint) | <1.8s | **0.8s** ✅ | ✅ **EXCELLENT** (56% under target) |
+| **TBT** (Total Blocking Time) | <200ms | **0ms** ✅ | ✅ **PERFECT** (100% under target) |
+| **CLS** (Cumulative Layout Shift) | <0.1 | **0** ✅ | ✅ **PERFECT** (no layout shift) |
+| **Speed Index** | <3.4s | **0.8s** ✅ | ✅ **EXCELLENT** (76% under target) |
 
-*Note: Performance metrics will be measured after deployment*
+*Measured: 2025-10-05 | Live site: https://nice-and-precise.github.io/mol-art-portfolio/*
 
 ---
 
