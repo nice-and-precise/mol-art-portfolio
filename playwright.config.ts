@@ -31,7 +31,7 @@ export default defineConfig({
   /* Shared settings for all the projects below */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:4331/mol-art-portfolio/',
+    baseURL: 'http://localhost:4332/mol-art-portfolio/',
 
     /* Collect trace when retrying the failed test */
     trace: 'on-first-retry',
@@ -54,7 +54,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npm run preview',
-    url: 'http://localhost:4331/mol-art-portfolio',
+    url: 'http://localhost:4332/mol-art-portfolio',
     reuseExistingServer: true,
     timeout: 120000,
   },
