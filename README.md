@@ -382,12 +382,12 @@ From the [constitution](constitution.md):
 
 ```mermaid
 graph LR
-    A[Artist says<br/>"wow"] -.->|Visual| Z[Success!]
-    B[Artist can<br/>maintain] -.->|Independent| Z
-    C[All gates<br/>pass] -.->|Constitutional| Z
-    D[Performance<br/>budgets green] -.->|Fast| Z
-    E[Feels<br/>handcrafted] -.->|Aesthetic| Z
-    F[Decisions<br/>traceable] -.->|Documented| Z
+    A["Artist says wow"] -.->|Visual| Z[Success!]
+    B["Artist can maintain"] -.->|Independent| Z
+    C["All gates pass"] -.->|Constitutional| Z
+    D["Performance budgets green"] -.->|Fast| Z
+    E["Feels handcrafted"] -.->|Aesthetic| Z
+    F["Decisions traceable"] -.->|Documented| Z
 
     style Z fill:#6b5544,color:#fff
 ```
