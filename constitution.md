@@ -2,14 +2,38 @@
 
 *Architectural principles governing the Mol_Art pottery portfolio project*
 
-**Last Updated**: 2025-10-04
-**Status**: Active
+![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)
+![Last Updated](https://img.shields.io/badge/Last_Updated-2025--10--04-blue?style=flat-square)
+![Articles](https://img.shields.io/badge/Articles-9-9c8671?style=flat-square)
 
 ---
 
 ## Preamble
 
 This constitution establishes the architectural principles for building a professional pottery portfolio website that prioritizes **simplicity**, **maintainability**, and **clarity** above all else. Every decision must serve the ultimate goal: **a high school ceramic artist can maintain this independently**.
+
+```mermaid
+mindmap
+  root((Mol_Art<br/>Constitution))
+    Core_Mission[🎯 Core Mission]
+      High_Schooler[High schooler<br/>can maintain]
+      Simple[Maximum<br/>simplicity]
+      Clear[Crystal<br/>clarity]
+    Principles[📜 9 Articles]
+      I[I: Simplicity<br/>≤3 components]
+      II[II: Content as Data<br/>Markdown only]
+      III[III: Test-First<br/>Always]
+      IV[IV: Performance<br/>≥90 score]
+      V[V: AI Enhancement<br/>Progressive]
+      VI[VI: Maintainability<br/>Plain language]
+      VII[VII: Earthy Aesthetic<br/>Clay palette]
+      VIII[VIII: Observable<br/>CLI testable]
+      IX[IX: Amendments<br/>Documented]
+    Enforcement[⚖️ Enforcement]
+      AI[AI Agent<br/>flags violations]
+      Tests[Tests<br/>automated checks]
+      Human[Human<br/>final authority]
+```
 
 ---
 
@@ -309,6 +333,20 @@ colors: {
 }
 ```
 
+#### Visual Palette
+
+| Color | Swatch | Hex | Usage |
+|-------|--------|-----|-------|
+| Cream | ![#faf8f5](https://via.placeholder.com/30x30/faf8f5/faf8f5.png) | `#faf8f5` | Backgrounds |
+| Light Clay | ![#f5f1ea](https://via.placeholder.com/30x30/f5f1ea/f5f1ea.png) | `#f5f1ea` | Cards |
+| Warm Tan | ![#d4c4b0](https://via.placeholder.com/30x30/d4c4b0/d4c4b0.png) | `#d4c4b0` | Borders |
+| Terracotta | ![#9c8671](https://via.placeholder.com/30x30/9c8671/9c8671.png) | `#9c8671` | Brand primary |
+| Fired Clay | ![#6b5544](https://via.placeholder.com/30x30/6b5544/6b5544.png) | `#6b5544` | Headings |
+| Dark Earth | ![#3d2f24](https://via.placeholder.com/30x30/3d2f24/3d2f24.png) | `#3d2f24` | Text |
+| Celadon | ![#7fa5a3](https://via.placeholder.com/30x30/7fa5a3/7fa5a3.png) | `#7fa5a3` | Accents |
+| Sage | ![#8b9d83](https://via.placeholder.com/30x30/8b9d83/8b9d83.png) | `#8b9d83` | Secondary |
+| Matte White | ![#f0ebe3](https://via.placeholder.com/30x30/f0ebe3/f0ebe3.png) | `#f0ebe3` | Highlights |
+
 ### Typography Scale
 
 - **Headers**: Serif font (Georgia or similar) for artisanal feel
@@ -480,6 +518,29 @@ Migration: 2 hours, low risk.
 
 ### Violation Response Protocol
 
+```mermaid
+flowchart TD
+    A[🚨 Violation Detected] --> B[⏸️ Stop Immediately]
+    B --> C[📝 Document Violation<br/>in spec]
+    C --> D{Solution<br/>Type?}
+    D -->|Conform| E[✅ Propose<br/>Conforming Solution]
+    D -->|Amend| F[📋 Propose<br/>Amendment]
+    E --> G[Wait for<br/>Human Approval]
+    F --> G
+    G --> H{Approved?}
+    H -->|Yes| I[✅ Proceed with<br/>Approved Solution]
+    H -->|No| C
+    I --> J[Update<br/>Documentation]
+    J --> K[Resume<br/>Implementation]
+
+    style A fill:#ff6b6b,color:#fff
+    style B fill:#ffcccc
+    style E fill:#ccffcc
+    style F fill:#fff3cd
+    style I fill:#9c8671,color:#fff
+    style K fill:#7fa5a3,color:#fff
+```
+
 When a violation is detected:
 
 1. **Stop immediately**
@@ -504,19 +565,70 @@ This constitution is a **living document**. It will evolve as we learn what work
 
 ---
 
+## Article Relationships
+
+```mermaid
+graph TB
+    subgraph Foundation[" 🏛️ Foundation Articles "]
+        I[I: Simplicity<br/>≤3 components]
+        II[II: Content as Data<br/>Markdown]
+        III[III: Test-First<br/>Red-Green-Refactor]
+    end
+
+    subgraph Quality[" ✨ Quality Articles "]
+        IV[IV: Performance<br/>≥90 Lighthouse]
+        VII[VII: Earthy Aesthetic<br/>Clay palette]
+    end
+
+    subgraph Intelligence[" 🤖 AI Articles "]
+        V[V: AI Enhancement<br/>Build-time only]
+    end
+
+    subgraph Maintenance[" 🔧 Maintenance Articles "]
+        VI[VI: Maintainability<br/>High schooler]
+        VIII[VIII: Observable<br/>CLI testable]
+    end
+
+    subgraph Governance[" 📋 Governance "]
+        IX[IX: Amendments<br/>Documented changes]
+    end
+
+    I --> IV
+    I --> V
+    II --> V
+    III --> VI
+    VII --> IV
+    VIII --> VI
+
+    Foundation --> Quality
+    Foundation --> Intelligence
+    Foundation --> Maintenance
+    Maintenance --> Governance
+
+    style I fill:#9c8671,color:#fff
+    style II fill:#9c8671,color:#fff
+    style III fill:#9c8671,color:#fff
+    style IV fill:#7fa5a3,color:#fff
+    style VII fill:#7fa5a3,color:#fff
+    style V fill:#8b9d83,color:#fff
+    style VI fill:#d4c4b0
+    style VIII fill:#d4c4b0
+    style IX fill:#f5f1ea
+```
+
 ## Quick Reference
 
-| Article | Principle | Gate Phase |
-|---------|-----------|------------|
-| I | Simplicity First (≤3 components) | Phase -1 |
-| II | Content as Data (markdown) | Phase 2 |
-| III | Test-First Development | All phases |
-| IV | Performance Budget (≥90) | Phase 3 |
-| V | AI Progressive Enhancement | Phase 2 |
-| VI | High Schooler Maintainability | Phase 4 |
-| VII | Earthy Aesthetic | Phase 1 |
-| VIII | Observable & Testable (CLI) | Phase 2 |
-| IX | Amendment Process | As needed |
+| Article | Principle | Gate Phase | Status |
+|---------|-----------|------------|--------|
+| I | Simplicity First (≤3 components) | Phase -1 | ✅ Passing |
+| II | Content as Data (markdown) | Phase 2 | ✅ Passing |
+| III | Test-First Development | All phases | ✅ Passing |
+| IV | Performance Budget (≥90) | Phase 3 | ⏳ Pending |
+| V | AI Progressive Enhancement | Phase 2 | 🔄 Future |
+| VI | High Schooler Maintainability | Phase 4 | ✅ Passing |
+| VII | Earthy Aesthetic | Phase 1 | ✅ Passing |
+| VIII | Observable & Testable (CLI) | Phase 2 | ✅ Passing |
+| IX | Amendment Process | As needed | ✅ Active |
 
 ---
 

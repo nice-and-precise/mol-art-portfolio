@@ -1,0 +1,87 @@
+Build a pottery gallery component for a ceramic artist portfolio.
+
+VISUAL REQUIREMENTS:
+- Responsive grid layout: 1 column (mobile <640px), 2 columns (tablet 640-1024px), 3 columns (desktop >1024px)
+- Each pottery card contains: square image (1:1 aspect ratio, 100% width), title (Georgia serif, 1.75rem, bold), techniques as small rounded pill badges, description (max 3 lines with ellipsis overflow)
+- Cards have 12px rounded corners, white background, subtle shadow (0 4px 6px rgba(0,0,0,0.1))
+- On hover: shadow grows to (0 10px 20px rgba(0,0,0,0.15)) and card scales to 1.02 with 300ms smooth transition
+- Grid gap: 32px between cards
+- Card internal padding: 24px
+
+COLOR PALETTE (use exactly these hex values):
+- Page background: #faf8f5 (warm cream)
+- Card background: #ffffff (white)
+- Title text: #3d2f24 (dark earth)
+- Description text: #6b5544 (fired clay)
+- Technique badge background: #d4c4b0 (warm tan)
+- Technique badge text: #3d2f24 (dark earth)
+- Hover accent: #9c8671 (terracotta - use for subtle border on hover)
+
+TYPOGRAPHY:
+- All titles: font-family: Georgia, serif
+- All other text: font-family: system-ui, -apple-system, sans-serif
+- Minimum font size: 16px anywhere
+- Title size: 1.75rem (28px)
+- Description size: 1rem (16px)
+- Badge text size: 0.875rem (14px)
+
+SPACING & DIMENSIONS:
+- Container max-width: 1200px, centered with auto margins
+- Top/bottom page padding: 64px
+- Card aspect ratio: Image is 1:1 square, content below is natural height
+- Badge padding: 6px 12px
+- Badge gap between items: 8px
+- Space between image and title: 16px
+- Space between title and badges: 12px
+- Space between badges and description: 12px
+
+DATA STRUCTURE (use this exact JSON):
+[
+  {
+    "id": 1,
+    "title": "Earth Vessel",
+    "techniques": ["hand-building", "slip decoration", "reduction firing"],
+    "description": "Hand-built vessel inspired by ancient earthenware forms. Features natural clay texture with slip decoration in warm earth tones. Fired in a reduction atmosphere to create depth.",
+    "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&h=600&fit=crop&auto=format"
+  },
+  {
+    "id": 2,
+    "title": "Spiral Form",
+    "techniques": ["wheel-throwing", "carving", "glazing"],
+    "description": "Wheel-thrown cylindrical form with hand-carved spiral patterns. Celadon glaze creates a smooth, glossy finish that highlights the carved texture.",
+    "image": "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=600&h=600&fit=crop&auto=format"
+  },
+  {
+    "id": 3,
+    "title": "Textured Bowl",
+    "techniques": ["hand-building", "pit firing", "burnishing"],
+    "description": "Hand-built bowl with natural texture from pit firing process. Unique color variations and organic crackle patterns created by smoke and flame contact.",
+    "image": "https://images.unsplash.com/photo-1615485736962-3f8a6f73e7a6?w=600&h=600&fit=crop&auto=format"
+  }
+]
+
+AESTHETIC GOALS:
+- Warm, earthy, handcrafted feel (like touching clay)
+- Generous whitespace - pottery needs room to breathe
+- Soft shadows, not harsh geometric ones
+- Color harmony across all browns/creams (no cool grays or blues)
+- Professional but artisanal, not corporate
+- Images should dominate, text should support
+
+TECHNICAL REQUIREMENTS:
+- Use React with TypeScript
+- Use Tailwind CSS for styling (configure custom colors if needed)
+- Make images responsive with object-fit: cover
+- Ensure accessibility: alt text for images, semantic HTML, ARIA labels where helpful
+- Use CSS Grid for layout
+- Implement smooth transitions (transition-all duration-300)
+
+BEHAVIOR:
+- Cards are clickable (whole card is interactive)
+- Hover state is obvious but subtle (lift + shadow growth)
+- Images load with good performance (use proper image sizing)
+- Layout reflows smoothly on window resize
+- Touch-friendly on mobile (adequate tap targets)
+
+OUTPUT:
+Create a complete, production-ready component that I can copy directly into my codebase. Make it feel like a handcrafted pottery gallery - warm, tactile, and artisanal.

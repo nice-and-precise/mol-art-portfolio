@@ -1,0 +1,261 @@
+---
+/**
+ * GalleryFilters Component
+ *
+ * Provides UI controls for filtering and sorting the pottery gallery.
+ * Displays technique pills, color pills, featured checkbox, and sort dropdown.
+ *
+ * Props:
+ * - allTechniques: Array of unique techniques from all pieces
+ * - allColors: Array of unique colors from all pieces
+ */
+
+interface Props {
+  allTechniques: string[];
+  allColors: string[];
+}
+
+const { allTechniques, allColors } = Astro.props;
+---
+
+<div class="gallery-filters">
+  <div class="filters-container">
+    <!-- Technique Filters -->
+    <div class="filter-section">
+      <h3 class="filter-label">Technique</h3>
+      <div class="filter-pills" role="group" aria-label="Filter by technique">
+        {allTechniques.map((technique) => (
+          <button
+            type="button"
+            class="filter-pill"
+            data-technique={technique}
+            role="button"
+            aria-pressed="false"
+            aria-label={`Filter by ${technique}`}
+          >
+            {technique}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Color Filters -->
+    <div class="filter-section">
+      <h3 class="filter-label">Color</h3>
+      <div class="filter-pills" role="group" aria-label="Filter by color">
+        {allColors.map((color) => (
+          <button
+            type="button"
+            class="filter-pill"
+            data-color={color}
+            role="button"
+            aria-pressed="false"
+            aria-label={`Filter by ${color}`}
+          >
+            {color}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Featured Filter -->
+    <div class="filter-section">
+      <label class="featured-label">
+        <input
+          type="checkbox"
+          id="featured-only"
+          class="featured-checkbox"
+        />
+        <span>Featured Only</span>
+      </label>
+    </div>
+
+    <!-- Sort Controls -->
+    <div class="filter-section">
+      <label for="sort-select" class="filter-label">Sort By</label>
+      <select id="sort-select" class="sort-select" aria-label="Sort pieces by">
+        <option value="date-desc">Newest First</option>
+        <option value="date-asc">Oldest First</option>
+        <option value="title-asc">Title A-Z</option>
+        <option value="title-desc">Title Z-A</option>
+        <option value="featured">Featured First</option>
+      </select>
+    </div>
+
+    <!-- Active Filters & Clear -->
+    <div class="filter-actions">
+      <span class="filter-count" style="display: none;">0 filters active</span>
+      <button type="button" class="clear-filters">Clear Filters</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gallery-filters {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+  }
+
+  .filters-container {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filter-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-title);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filter-pill {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-badge);
+    background: transparent;
+    color: var(--text-body);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .filter-pill:hover {
+    background: var(--color-badge);
+    color: var(--text-title);
+    transform: translateY(-1px);
+  }
+
+  .filter-pill.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .filter-pill:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .featured-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    color: var(--text-body);
+  }
+
+  .featured-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    accent-color: var(--color-accent);
+  }
+
+  .sort-select {
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--color-badge);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-body);
+    font-size: 0.9375rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    max-width: 200px;
+  }
+
+  .sort-select:hover {
+    border-color: var(--color-accent);
+  }
+
+  .sort-select:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-color: var(--color-accent);
+  }
+
+  .filter-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-badge);
+  }
+
+  .filter-count {
+    font-size: 0.875rem;
+    color: var(--text-body);
+    font-weight: 500;
+  }
+
+  .clear-filters {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .clear-filters:hover {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .clear-filters:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Responsive: Stack on mobile */
+  @media (min-width: 768px) {
+    .filters-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .filter-actions {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .filters-container {
+      grid-template-columns: 2fr 2fr 1fr 1fr;
+    }
+
+    .filter-actions {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

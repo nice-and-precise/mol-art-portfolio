@@ -1,0 +1,24 @@
+Add a dark theme toggle to this gallery.
+
+DARK THEME COLORS:
+- Background: #1a1410 (dark earth)
+- Card background: #2d2419 (dark clay)
+- Title text: #f5f1ea (light clay)
+- Body text: #d4c4b0 (warm tan)
+- Badges: #3d2f24 background with #d4c4b0 text
+- Keep primary accent #9c8671 (terracotta)
+
+TOGGLE BUTTON:
+- Top right corner, small, rounded pill shape
+- Icons: Sun (light mode) / Moon (dark mode)
+- Smooth transition between themes (300ms)
+- Toggle background matches theme
+
+REQUIREMENTS:
+- Persist theme choice in localStorage
+- Smooth color transitions on all elements
+- Maintain warm earthy feel in both themes
+- Dark theme should feel like "pottery studio at night"
+- Keep all spacing, layout, and hover effects identical
+
+Make the dark theme cozy and warm, not cold or harsh.

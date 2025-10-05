@@ -1,0 +1,87 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Professional pottery portfolio showcasing handcrafted ceramic art' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Theme system - inline to prevent FOUC -->
+    <script is:inline>
+      // Apply theme before page renders
+      (function() {
+        const getTheme = () => {
+          if (typeof localStorage === 'undefined') return 'light';
+          return localStorage.getItem('pottery-theme') || 'light';
+        };
+        const theme = getTheme();
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- Global theme styles -->
+    <style is:global>
+      :root {
+        --bg-page: #faf8f5;
+        --bg-card: #ffffff;
+        --text-title: #3d2f24;
+        --text-body: #6b5544;
+        --color-badge: #d4c4b0;
+        --color-badge-text: #3d2f24;
+        --color-accent: #9c8671;
+        --skeleton-base: #d4c4b0;
+        --skeleton-shine: #e0d4c4;
+      }
+
+      [data-theme='dark'] {
+        --bg-page: #1a1410;
+        --bg-card: #2d2419;
+        --text-title: #f5f1ea;
+        --text-body: #d4c4b0;
+        --color-badge: #3d2f24;
+        --color-badge-text: #d4c4b0;
+        --color-accent: #9c8671;
+        --skeleton-base: #3d2f24;
+        --skeleton-shine: #4a3a2e;
+      }
+
+      /* Smooth transitions for theme changes */
+      * {
+        transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+      }
+
+      /* Prevent transition on page load */
+      .no-transition * {
+        transition: none !important;
+      }
+
+      body {
+        background-color: var(--bg-page);
+        color: var(--text-body);
+      }
+    </style>
+
+    <!-- Theme script -->
+    <script>
+      import { setTheme, getTheme, toggleTheme } from '../scripts/theme.ts';
+      // Functions are already exported to window in theme.ts
+    </script>
+  </head>
+  <body class="font-sans min-h-screen">
+    <ThemeToggle />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
