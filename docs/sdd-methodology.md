@@ -19,26 +19,33 @@ Only after the specification is approved do we move to planning, then tests, the
 
 ## The SDD Workflow
 
-```
-┌─────────────┐
-│   /specify  │ ← Define the feature
-└──────┬──────┘
-       │
-       ↓ (Human approves)
-┌─────────────┐
-│    /plan    │ ← How to implement
-└──────┬──────┘
-       │
-       ↓ (Human approves)
-┌─────────────┐
-│   /tasks    │ ← Break into steps
-└──────┬──────┘
-       │
-       ↓
-┌─────────────┐
-│ Test-First  │ ← Write tests
-│   Implement │ ← Then code
-└─────────────┘
+```mermaid
+flowchart TD
+    A[💡 /specify<br/>Define Feature] --> B{Human<br/>Approves?}
+    B -->|Yes| C[📋 /plan<br/>Implementation Strategy]
+    B -->|No| A
+    C --> D{Human<br/>Approves?}
+    D -->|Yes| E[✅ /tasks<br/>Break into Steps]
+    D -->|No| C
+    E --> F[🔴 Write Tests<br/>RED Phase]
+    F --> G{Tests<br/>Approved?}
+    G -->|Yes| H[✅ Confirm Red<br/>Tests Fail]
+    G -->|No| F
+    H --> I[💚 Implement<br/>GREEN Phase]
+    I --> J{Tests<br/>Pass?}
+    J -->|Yes| K[📝 Document]
+    J -->|No| I
+    K --> L[🚀 Deploy]
+
+    style A fill:#f9f7f4
+    style C fill:#f9f7f4
+    style E fill:#f9f7f4
+    style F fill:#ffcccc
+    style H fill:#ffcccc
+    style I fill:#ccffcc
+    style J fill:#ccffcc
+    style K fill:#e3f0eb
+    style L fill:#9c8671,color:#fff
 ```
 
 ---
@@ -250,18 +257,32 @@ Ensure every feature is tested before it's implemented.
 
 ### The Red-Green-Refactor Cycle
 
-```
-1. RED: Write failing test
-   ↓
-2. Human approves test
-   ↓
-3. Confirm test fails (red phase)
-   ↓
-4. GREEN: Write minimal code to pass
-   ↓
-5. Confirm test passes (green phase)
-   ↓
-6. REFACTOR: Improve code quality
+```mermaid
+stateDiagram-v2
+    [*] --> WriteTest: 🔴 RED Phase
+    WriteTest --> RequestApproval
+    RequestApproval --> WriteTest: Needs changes
+    RequestApproval --> ConfirmRed: Approved
+    ConfirmRed --> Implement: Tests fail ✓
+    Implement --> RunTests: 💚 GREEN Phase
+    RunTests --> Implement: Tests fail
+    RunTests --> Refactor: Tests pass ✓
+    Refactor --> [*]: Deploy
+
+    note right of WriteTest
+        Write failing tests
+        that verify spec
+    end note
+
+    note right of ConfirmRed
+        Verify tests actually
+        fail before coding
+    end note
+
+    note right of Implement
+        Write minimal code
+        to pass tests
+    end note
 ```
 
 ### Detailed Process
@@ -549,6 +570,43 @@ Before feature is marked "complete":
 
 ### Phase Progression
 
+```mermaid
+graph LR
+    subgraph Phase_0[" Phase 0: Specify "]
+        A1[📝 /specify] --> A2[spec.md]
+        A2 --> A3{Approved?}
+    end
+
+    subgraph Phase_1[" Phase 1: Plan "]
+        B1[📋 /plan] --> B2[plan.md]
+        B2 --> B3[data-model.md]
+        B3 --> B4[contracts/]
+        B4 --> B5{Approved?}
+    end
+
+    subgraph Phase_2[" Phase 2: Tasks "]
+        C1[✅ /tasks] --> C2[tasks.md]
+        C2 --> C3[Auto-proceed]
+    end
+
+    subgraph Phase_3[" Phase 3: Implement "]
+        D1[🔴 Tests] --> D2{Approved?}
+        D2 --> D3[💚 Code]
+        D3 --> D4[Deploy]
+    end
+
+    A3 -->|Yes| B1
+    A3 -->|No| A1
+    B5 -->|Yes| C1
+    B5 -->|No| B1
+    C3 --> D1
+
+    style Phase_0 fill:#faf8f5
+    style Phase_1 fill:#f5f1ea
+    style Phase_2 fill:#d4c4b0
+    style Phase_3 fill:#9c8671,color:#fff
+```
+
 | Phase | Command | Output | Approval Needed |
 |-------|---------|--------|-----------------|
 | 0 | `/specify` | spec.md | Yes |
@@ -564,6 +622,27 @@ Before feature is marked "complete":
 4. **Constitutional amendments**: Explicit approval for each amendment
 
 ### Constitutional Gates
+
+```mermaid
+mindmap
+  root((Constitutional<br/>Gates))
+    Phase_minus1[Phase -1: Pre-Implementation]
+      I[I: Simplicity<br/>≤3 components]
+      VIII[VIII: Observable<br/>CLI testable]
+      VI[VI: Maintainability<br/>High schooler]
+    Phase_1[Phase 1: Design]
+      VII[VII: Aesthetic<br/>Earthy colors]
+    Phase_2[Phase 2: Implementation]
+      II[II: Content as Data<br/>Markdown]
+      III[III: Test-First<br/>Red-Green]
+      V[V: AI Enhancement<br/>Fallbacks]
+    Phase_3[Phase 3: Deployment]
+      IV[IV: Performance<br/>≥90 score]
+    Phase_4[Phase 4: Documentation]
+      VI_2[VI: Maintainability<br/>Plain language]
+    Any_Phase[Any Phase]
+      IX[IX: Amendments<br/>Process]
+```
 
 | Article | Check | Phase |
 |---------|-------|-------|
