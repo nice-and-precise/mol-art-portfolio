@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Professional pottery portfolio showcasing handcrafted ceramic art' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-clay-50 text-clay-900 font-sans">
+    <main class="min-h-screen">
+      <slot />
+    </main>
+  </body>
+</html>

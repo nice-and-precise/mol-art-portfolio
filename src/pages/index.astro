@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const pieces = await getCollection('pieces');
+const sortedPieces = pieces.sort((a, b) =>
+  b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="Mol_Art - Ceramic Portfolio">
+  <div class="container mx-auto px-4 py-12">
+    <header class="text-center mb-16">
+      <h1 class="text-5xl font-serif font-bold text-clay-900 mb-4">
+        Mol_Art
+      </h1>
+      <p class="text-xl text-clay-700">
+        Handcrafted Ceramic Art
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {sortedPieces.map((piece) => (
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="aspect-square bg-clay-100"></div>
+          <div class="p-6">
+            <h2 class="text-2xl font-serif font-bold text-clay-900 mb-2">
+              {piece.data.title}
+            </h2>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {piece.data.techniques.map((technique) => (
+                <span class="px-3 py-1 bg-clay-200 text-clay-800 rounded-full text-sm">
+                  {technique}
+                </span>
+              ))}
+            </div>
+            <p class="text-clay-700 line-clamp-3">
+              {piece.data.description}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
