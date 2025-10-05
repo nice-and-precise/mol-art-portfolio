@@ -21,8 +21,15 @@ const sortedPieces = pieces.sort((a, b) =>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {sortedPieces.map((piece) => (
-        <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="aspect-square bg-clay-100"></div>
+        <a href={`/mol-art-portfolio/gallery/${piece.slug}`} class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow block">
+          <div class="aspect-square bg-clay-100 relative overflow-hidden">
+            <img
+              src={piece.data.mainImage}
+              alt={piece.data.title}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
           <div class="p-6">
             <h2 class="text-2xl font-serif font-bold text-clay-900 mb-2">
               {piece.data.title}
@@ -38,7 +45,7 @@ const sortedPieces = pieces.sort((a, b) =>
               {piece.data.description}
             </p>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>
