@@ -1,0 +1,13 @@
+Mol_Art Pottery Portfolio - warm, earthy, handcrafted aesthetic for ceramic artist.
+
+COLORS (exact hex): Background #faf8f5, cards #ffffff, title #3d2f24, body #6b5544, primary #9c8671, badges #d4c4b0. NO cool grays/blues except #7fa5a3 accent.
+
+TYPOGRAPHY: Titles = Georgia serif (1.75rem min), body = system-ui (16px min).
+
+LAYOUT: Responsive grid 1/2/3 columns, 32px gaps, 24px card padding, 12px rounded corners, max-width 1200px.
+
+COMPONENTS: Square 1:1 images, technique pill badges, 3-line descriptions with ellipsis, soft shadows growing on hover (scale 1.02, 300ms).
+
+REQUIREMENTS: React + TypeScript + Tailwind, semantic HTML, WCAG AA accessibility, mobile-first responsive, production-ready code.
+
+AESTHETIC: Generous whitespace, artisanal not corporate, soft shadows, warm earth tones only.

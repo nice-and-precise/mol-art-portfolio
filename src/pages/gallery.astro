@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all pottery pieces from content collections
+const pieces = await getCollection('pieces');
+
+// Sort by date (newest first)
+const sortedPieces = pieces.sort((a, b) =>
+  b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="Gallery - Mol_Art Portfolio" description="Browse handcrafted ceramic pottery pieces showcasing various techniques and glazes">
+  <div class="min-h-screen py-16">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPieces.map((piece, index) => (
+          <article
+            class="pottery-card group rounded-xl p-6 cursor-pointer transition-all duration-300 ease-out shadow-md hover:shadow-lg hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9c8671] focus-visible:ring-offset-2 hover:border-2 hover:border-[#9c8671]"
+            style={{
+              backgroundColor: 'var(--bg-card)',
+              animationDelay: `${index * 100}ms`,
+            }}
+            role="button"
+            tabindex="0"
+            aria-label={`View details for ${piece.data.title}`}
+            data-piece-id={piece.id}
+          >
+            <!-- Image Container with Skeleton Loader -->
+            <div class="aspect-square w-full overflow-hidden rounded-lg mb-4 relative">
+              <!-- Skeleton Loader -->
+              <div
+                class="skeleton-loader absolute inset-0 rounded-lg"
+                aria-label="Loading image"
+              ></div>
+
+              <!-- Actual Image -->
+              <img
+                src={piece.data.mainImage}
+                alt={`${piece.data.title} - handcrafted pottery piece`}
+                class="pottery-image w-full h-full object-cover opacity-0 transition-opacity duration-300"
+                loading="lazy"
+                onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+              />
+            </div>
+
+            <!-- Title -->
+            <h2
+              class="font-serif text-[1.75rem] leading-7 font-bold mb-3"
+              style={{ color: 'var(--text-title)' }}
+            >
+              {piece.data.title}
+            </h2>
+
+            <!-- Technique Badges -->
+            <div class="flex flex-wrap gap-2 mb-3" role="list" aria-label="Pottery techniques">
+              {piece.data.techniques.map((technique) => (
+                <span
+                  class="technique-badge px-3 py-1.5 rounded text-[0.875rem] leading-none"
+                  style={{
+                    backgroundColor: 'var(--color-badge)',
+                    color: 'var(--color-badge-text)',
+                  }}
+                  role="listitem"
+                >
+                  {technique}
+                </span>
+              ))}
+            </div>
+
+            <!-- Description -->
+            <p
+              class="text-base leading-relaxed line-clamp-3"
+              style={{ color: 'var(--text-body)' }}
+            >
+              {piece.data.description}
+            </p>
+
+            <!-- Screen Reader Text -->
+            <span class="sr-only">Click to view full details</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Page Load Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .pottery-card {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Skeleton Loader Animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .skeleton-loader {
+    background: linear-gradient(
+      90deg,
+      var(--skeleton-base) 0%,
+      var(--skeleton-shine) 50%,
+      var(--skeleton-base) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Image loaded state */
+  .pottery-image[style*="opacity: 1"] + .skeleton-loader {
+    display: none;
+  }
+
+  /* Hover Effects */
+  .pottery-card {
+    border: 2px solid transparent;
+  }
+
+  .pottery-card:hover {
+    border-color: var(--color-accent);
+  }
+
+  /* Active/Click State */
+  .pottery-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Line Clamp */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  // Add keyboard navigation
+  document.querySelectorAll('.pottery-card').forEach((card) => {
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const pieceId = card.getAttribute('data-piece-id');
+        console.log('Navigating to pottery piece:', pieceId);
+        // TODO: Navigate to detail page when implemented
+      }
+    });
+
+    card.addEventListener('click', () => {
+      const pieceId = card.getAttribute('data-piece-id');
+      console.log('Clicked pottery piece:', pieceId);
+      // TODO: Navigate to detail page when implemented
+    });
+  });
+</script>

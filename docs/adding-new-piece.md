@@ -111,7 +111,7 @@ npm run dev
 # Open http://localhost:4321
 ```
 
-Your new piece should appear in the gallery!
+Your new piece should appear on the homepage AND in the gallery at `/gallery`!
 
 ## Step 6: Deploy
 
@@ -140,6 +140,27 @@ Your changes will be live on GitHub Pages in about 2 minutes.
 ### ❌ Wrong date format
 **Error**: "Invalid date"
 **Fix**: Use YYYY-MM-DD format, like `"2025-03-15"`
+
+## Viewing Your Gallery
+
+Your pottery pieces appear in two places:
+
+1. **Homepage** (`/`): Shows featured pieces
+2. **Gallery** (`/gallery`): Shows ALL pieces in a responsive grid
+
+The gallery has:
+- Responsive layout (1 column on phone, 2 on tablet, 3 on desktop)
+- Smooth loading animations
+- Technique badges for each piece
+- Light and dark theme support
+
+## Theme Toggle
+
+The site has a light/dark theme toggle in the top-right corner:
+- **Moon icon** = Click for dark mode
+- **Sun icon** = Click for light mode
+
+Your preference is saved automatically!
 
 ## Need Help?
 
