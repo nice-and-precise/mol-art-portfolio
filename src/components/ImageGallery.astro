@@ -22,15 +22,33 @@ interface Props {
 
 const { images, mainImage, title } = Astro.props;
 
+// Get base URL for proper path resolution
+const base = import.meta.env.BASE_URL || '/';
+
+// Helper to ensure paths work with base URL
+// Image paths from content collections are relative (e.g., './images/piece.jpg')
+// We need to resolve them relative to the base URL
+function resolveImagePath(imagePath: string): string {
+  // If it's already an absolute URL, return as-is
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+    return imagePath;
+  }
+
+  // For relative paths, they'll be resolved by Astro during build
+  // But we need to ensure the final output includes the base URL
+  // Since Astro processes these at build time, we just return them
+  return imagePath;
+}
+
 // Combine main image + detail images for lightbox
 const allImages: LightboxImage[] = [
   {
-    src: mainImage,
+    src: resolveImagePath(mainImage),
     alt: `${title} - main view`,
     caption: `${title} - Main view`,
   },
   ...images.map((img, index) => ({
-    src: img,
+    src: resolveImagePath(img),
     alt: `${title} - detail ${index + 1}`,
     caption: `${title} - Detail ${index + 1}`,
   })),
@@ -344,8 +362,10 @@ const allImages: LightboxImage[] = [
     const thumbnails = container.querySelectorAll('.thumbnail-button');
     const images: LightboxImage[] = Array.from(thumbnails).map((thumb) => {
       const img = thumb.querySelector('img');
+      const src = img?.src || '';
+      console.log('Lightbox image src:', src);
       return {
-        src: img?.src || '',
+        src,
         alt: img?.alt || '',
         caption: img?.alt || '',
       };
@@ -393,6 +413,24 @@ const allImages: LightboxImage[] = [
         if (loadingEl) loadingEl.style.display = 'none';
         if (imgEl) imgEl.style.opacity = '1';
       };
+
+      // Handle image error
+      imgEl.onerror = () => {
+        console.error(`Failed to load image: ${image.src}`);
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (imgEl) imgEl.style.opacity = '1';
+        // Show a placeholder or error message
+        imgEl.alt = `Failed to load: ${image.alt}`;
+      };
+
+      // Fallback timeout in case image never loads or errors
+      setTimeout(() => {
+        if (loadingEl && loadingEl.style.display !== 'none') {
+          console.warn(`Image load timeout for: ${image.src}`);
+          if (loadingEl) loadingEl.style.display = 'none';
+          if (imgEl) imgEl.style.opacity = '1';
+        }
+      }, 5000);
 
       // Update caption
       if (captionEl) {

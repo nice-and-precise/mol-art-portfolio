@@ -6,10 +6,10 @@ colors: ["terracotta", "cream", "rust"]
 textures: ["rough", "organic"]
 description: "Hand-built vessel inspired by ancient earthenware forms. Features natural clay texture with slip decoration in warm earth tones. The organic shape and earth colors create a grounding, timeless piece."
 featured: true
-mainImage: "./images/piece-01/main.jpg"
+mainImage: "/mol-art-portfolio/images/piece-01/main.svg"
 detailImages:
-  - "./images/piece-01/detail-texture.jpg"
-  - "./images/piece-01/detail-glaze.jpg"
+  - "/mol-art-portfolio/images/piece-01/detail-texture.svg"
+  - "/mol-art-portfolio/images/piece-01/detail-glaze.svg"
 ---
 
 ## Story Behind the Piece
