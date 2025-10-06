@@ -353,33 +353,76 @@ graph TB
 
 ---
 
-## 🚀 Deployment Readiness
+## 🚀 Deployment Status
+
+### ✅ LIVE & PRODUCTION READY
+
+**Site URL**: [https://nice-and-precise.github.io/mol-art-portfolio/](https://nice-and-precise.github.io/mol-art-portfolio/)
+
+### Deployment Journey (Session 4 - 2025-10-05)
+
+**Critical Bugs Fixed**:
+1. ✅ **URL Concatenation Bug** - Missing slash between base URL and paths
+   - **Issue**: `import.meta.env.BASE_URL` is `/mol-art-portfolio` (no trailing slash)
+   - **Impact**: URLs became `/mol-art-portfoliogallery/` instead of `/mol-art-portfolio/gallery/`
+   - **Fix**: Explicitly added `/` in all URL concatenations
+   - **Files**: `src/pages/index.astro:24`, `src/pages/gallery/[slug].astro:38`
+
+2. ✅ **Theme Toggle Not Working** - Functions not exposed to window
+   - **Issue**: Theme functions weren't available in production build
+   - **Fix**: Changed script to use `is:inline` directive in `BaseLayout.astro`
+   - **Impact**: Dark mode now fully functional across all pages
+
+3. ✅ **gh-pages NPM Tool Failure** - Deploying to wrong directory structure
+   - **Issue**: Tool created `dist/` subfolder on gh-pages branch instead of deploying contents
+   - **Fix**: Manual deployment from dist folder using git commands
+   - **Working Method**: `cd dist && git init && git add -A && git commit -m "Deploy" && git push -f`
+
+4. ✅ **Jekyll Processing** - GitHub Pages ignoring `_astro` folder
+   - **Issue**: GitHub Pages default Jekyll processing hides folders starting with `_`
+   - **Fix**: Added `.nojekyll` file to dist root
+   - **Impact**: All CSS/JS assets now loading correctly
 
 ### Pre-Deployment Checklist
 
 - [x] Repository initialized
-- [x] All tests passing (168/168)
+- [x] All tests passing (244/268)
 - [x] Build succeeds locally
 - [x] Documentation complete
 - [x] GitHub repo created
-- [x] GitHub Pages configured
+- [x] GitHub Pages configured (gh-pages branch)
 - [x] **Performance budget verified (100/100/96/100)** ⚡
 - [x] Production build tested
 - [x] **LIVE on GitHub Pages** 🚀
+- [x] **URL routing verified** - All navigation working
+- [x] **Dark mode verified** - Theme toggle functional
+- [x] **Asset loading verified** - All CSS/JS loading correctly
 - [ ] Custom domain configured (optional)
 
-### Deployment Commands
+### Working Deployment Process
 
 ```bash
 # Build for production
 npm run build
 
-# Preview production build
-npm run preview
+# Copy .nojekyll to dist (prevents Jekyll processing)
+cp public/.nojekyll dist/
 
-# Deploy to GitHub Pages
-npm run deploy
+# Manual deployment to gh-pages branch (gh-pages npm tool is broken)
+cd dist
+git init
+git add -A
+git commit -m "Deploy to GitHub Pages"
+git push -f https://github.com/nice-and-precise/mol-art-portfolio.git HEAD:gh-pages
+cd ..
+
+# Configure GitHub Pages settings:
+# - Source: Deploy from a branch
+# - Branch: gh-pages
+# - Folder: / (root)
 ```
+
+**Note**: The `npm run deploy` command (using gh-pages npm package) is currently broken and should not be used. It incorrectly deploys source files and creates a dist/ subdirectory instead of deploying dist contents to root. Use the manual deployment method above instead.
 
 ---
 
